@@ -154,6 +154,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onAuthFailure(String s) {
+                runOnUiThread(()->{
+                    Toast.makeText(getApplicationContext(), "未获取授权", Toast.LENGTH_SHORT).show();
+                });
 
             }
         });
@@ -214,7 +217,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 AppSDK.getInstance().stopScan();
                 bleBeanList.clear();
                 //调用设备搜索的接口
-                AppSDK.getInstance().scanBleDevice(this, new ScanListener() {
+                int ret = AppSDK.getInstance().scanBleDevice(this, new ScanListener() {
                     @Override
                     public void onScanResult(BleBean bleBean) {
                         if(bleBean == null || TextUtils.isEmpty(bleBean.getName())) return;
@@ -238,12 +241,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         Log.d(TAG, "扫描到结束");
                     }
                 });
+                if(ret == -1){
+                    Toast.makeText(getApplicationContext(), "授权不通过", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.bt_connect_device:
                 if(!TextUtils.isEmpty(tv_patch_name.getText().toString())) {
                     SharedPrefUtils.putString(getApplicationContext(), "deviceName", tv_patch_name.getText().toString());
                     //扫描设备
-                    AppSDK.getInstance().scanBleDevice(this, new ScanListener() {
+                    int ret1 = AppSDK.getInstance().scanBleDevice(this, new ScanListener() {
                         @Override
                         public void onScanResult(BleBean bleBean) {
                             if(bleBean != null){
@@ -266,6 +272,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                         });
                                     } catch (NoAuthException e) {
                                         e.printStackTrace();
+                                        runOnUiThread(()->{
+                                            Toast.makeText(getApplicationContext(), "授权不通过", Toast.LENGTH_SHORT).show();
+                                        });
                                     }
                                 }
                             }
@@ -276,6 +285,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                         }
                     });
+                    if(ret1 == -1){
+                        Toast.makeText(getApplicationContext(), "授权不通过", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             case R.id.bt_disconnect_device:
