@@ -2,7 +2,7 @@
 
 #### 介绍
 柔灵科技SDK
-https://openplatform.flexolinkai.com/
+http://openplatform.flexolinkai.com/
 
 #### 软件架构
 背景：柔灵科技专注于脑机接口技术的研发，为广大科研和企业用户提供脑机接口相关的API, 提供的服务有脑机接口设备的连接、脑电数据采集、存储、分析、睡眠闭环等相关接口。
