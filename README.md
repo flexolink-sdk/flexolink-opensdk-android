@@ -1,12 +1,9 @@
 # FlexolinkSdkExample
 
 #### 介绍
-<<<<<<< HEAD
-柔灵科技SDK 测试例子
-=======
+
 柔灵科技SDK
 http://openplatform.flexolinkai.com/
->>>>>>> baab4d28e58e9595b3be936faedd8b97024bafcf
 
 #### 软件架构
 背景：柔灵科技专注于脑机接口技术的研发，为广大科研和企业用户提供脑机接口相关的API, 提供的服务有脑机接口设备的连接、脑电数据采集、存储、分析、睡眠闭环等相关接口。
