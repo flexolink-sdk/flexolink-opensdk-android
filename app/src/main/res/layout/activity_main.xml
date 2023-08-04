@@ -43,27 +43,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/bt_connect_device"
-                android:layout_width="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="连接设备"/>
-            <Button
-                android:id="@+id/bt_start_record"
-                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/bt_connect_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="连接设备"/>
+                <Button
+                    android:id="@+id/bt_disconnect_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="断开连接"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="开始记录"/>
-            <Button
-                android:id="@+id/bt_stop_record"
-                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/bt_start_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开始记录"/>
+                <Button
+                    android:id="@+id/bt_stop_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="结束记录"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="结束记录"/>
-            <Button
-                android:id="@+id/bt_disconnect_device"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="断开连接"/>
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/bt_start_push"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开始推送"/>
+                <Button
+                    android:id="@+id/bt_stop_push"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="结束推送"/>
+            </LinearLayout>
         </LinearLayout>
 
         <Button

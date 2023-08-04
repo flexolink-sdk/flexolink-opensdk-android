@@ -56,7 +56,7 @@ import flexolink.sdk.core.util.JsonUtil;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
-    Button bt_search_patch, bt_connect_device, bt_start_record, bt_stop_record, bt_disconnect_device, bt_init, bt_release;
+    Button bt_search_patch, bt_connect_device, bt_start_record, bt_stop_record, bt_disconnect_device, bt_init, bt_release, bt_start_push, bt_stop_push;
     TextView tv_patch_name;
     TextView tv_init_sdk, tv_scan_device, tv_stop_scan, tv_connect_device, tv_get_connect_status, tv_real_data, tv_src_data, tv_close_device_connect, tv_is_wear_patch
             ,tv_get_device_battery, tv_signal_quality, tv_start_record, tv_stop_record, tv_add_event, tv_sleep_stage, tv_get_body_position, tv_get_rssi, tv_set_filter;
@@ -100,7 +100,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         tv_get_rssi = findViewById(R.id.tv_get_rssi);
         tv_set_filter = findViewById(R.id.tv_set_filter);
         bt_check = findViewById(R.id.bt_check);
-
+        bt_start_push = findViewById(R.id.bt_start_push);
+        bt_stop_push = findViewById(R.id.bt_stop_push);
+        bt_start_push.setOnClickListener(this);
+        bt_stop_push.setOnClickListener(this);
         BleBean bleBean = SharedPrefUtils.getObject(getApplicationContext(), "pref_patch_ble", BleBean.class);
         if(bleBean != null){
             tv_patch_name.setText(bleBean.getName());
@@ -349,6 +352,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 //检查权限
                 checkAuth();
                 break;
+            case R.id.bt_start_push:
+                AppSDK.getInstance().startPush(true);
+                break;
+            case R.id.bt_stop_push:
+                AppSDK.getInstance().stopPush();
+                break;
         }
     }
 
@@ -400,7 +409,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             showResult(tv_get_device_battery, true);
         }
         try {
-            AppSDK.getInstance().SignalQuality(new float[1], 1);
+            AppSDK.getInstance().signalQuality(new float[1], 1);
             showResult(tv_signal_quality, true);
         } catch (NoAuthException e) {
             e.printStackTrace();
