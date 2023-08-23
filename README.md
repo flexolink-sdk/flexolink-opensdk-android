@@ -29,6 +29,13 @@ dependencies {
      implementation group: 'uk.me.berndporr', name:'iirj', version: '1.5'
     	//公共的数学函数库
      implementation 'org.apache.commons:commons-math3:3.6.1'
+     implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
+     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 }
 
 ```
