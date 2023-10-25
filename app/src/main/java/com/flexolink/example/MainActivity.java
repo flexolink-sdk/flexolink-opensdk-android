@@ -34,9 +34,10 @@ import java.util.Date;
 import java.util.List;
 
 import flexolink.sdk.core.AppSDK;
-import flexolink.sdk.core.bean.SchemeInfoBean;
-import flexolink.sdk.core.bean.SleepSchemeType;
-import flexolink.sdk.core.bean.UserInfoBean;
+
+import flexolink.sdk.core.bleDeviceSdk.bean.SchemeInfoBean;
+import flexolink.sdk.core.bleDeviceSdk.bean.SleepSchemeType;
+import flexolink.sdk.core.bleDeviceSdk.bean.UserInfoBean;
 import flexolink.sdk.core.bleDeviceSdk.sdklib.bean.BleBean;
 import flexolink.sdk.core.bleDeviceSdk.sdklib.bean.ConnectResultType;
 import flexolink.sdk.core.bleDeviceSdk.sdklib.bean.RecordEventCode;
@@ -143,6 +144,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         //fsmTime = System.currentTimeMillis();
                         ChartHelper.getInstance().addMultiEntry(eegData);
                         //Log.d("耗时", "绘图耗时 " + (System.currentTimeMillis() - fsmTime) + "ms");
+                    }
+
+                    @Override
+                    public void onRealTimeImuData(float v, float v1, float v2, float v3, float v4, float v5) {
+
                     }
                 });
                 AppSDK.getInstance().setSleepStageListener(new SleepStageListener() {
@@ -311,7 +317,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onStartRecord(String edfPath) {
                         Log.d("TAG", "记录开始 " + edfPath);
-                        Toast.makeText(getApplicationContext(), "开始记录", Toast.LENGTH_SHORT ).show();
+                        runOnUiThread(()->{
+                            Toast.makeText(getApplicationContext(), "开始记录", Toast.LENGTH_SHORT ).show();
+                        });
+
                     }
                     @Override
                     public void onRecording() {
@@ -326,7 +335,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onStopRecord() {
                         Log.d("TAG", "停止记录");
-                        Toast.makeText(getApplicationContext(), "停止记录", Toast.LENGTH_SHORT ).show();
+                        runOnUiThread(()->{
+                            Toast.makeText(getApplicationContext(), "停止记录", Toast.LENGTH_SHORT ).show();
+                        });
+
                     }
 
                     @Override

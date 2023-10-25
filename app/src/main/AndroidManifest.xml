@@ -23,10 +23,10 @@
         </activity>
         <meta-data
             android:name="apiKey"
-            android:value="rla3a8ddefdfca" />
+            android:value="rla9ccbea81fa9" />
         <meta-data
             android:name="apiSecret"
-            android:value="a3a8ddefdfca1949631353017dd1b038" />
+            android:value="e6599d04cc09e75d3c975352f12588bc" />
     </application>
 
 </manifest>
