@@ -150,6 +150,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     public void onRealTimeImuData(float v, float v1, float v2, float v3, float v4, float v5) {
 
                     }
+
+                    @Override
+                    public void onRealTimeEegBand(float[] floats, float[] floats1, float[] floats2, float[] floats3) {
+                        Log.d(TAG, "delta " + floats.length);
+                        Log.d(TAG, "theta " + floats1.length);
+                        Log.d(TAG,"alpha " +  floats2.length);
+                        Log.d(TAG, "beta " + floats3.length);
+                    }
                 });
                 AppSDK.getInstance().setSleepStageListener(new SleepStageListener() {
                     @Override
