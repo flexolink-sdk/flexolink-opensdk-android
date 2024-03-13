@@ -69,6 +69,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     List<BleBean> bleBeanList = new ArrayList<>();
     ScanBlePopWindow scanBlePopWindow;
     boolean isPopWindowShowing = false;
+    String mEdfPath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -324,6 +325,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 AppSDK.getInstance().startRecord(edf_path, userInfoBean,schemeInfoBean, new RecordListener() {
                     @Override
                     public void onStartRecord(String edfPath) {
+                        mEdfPath = edfPath;
                         Log.d("TAG", "记录开始 " + edfPath);
                         runOnUiThread(()->{
                             Toast.makeText(getApplicationContext(), "开始记录", Toast.LENGTH_SHORT ).show();
@@ -343,10 +345,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void onStopRecord() {
                         Log.d("TAG", "停止记录");
-                        runOnUiThread(()->{
-                            Toast.makeText(getApplicationContext(), "停止记录", Toast.LENGTH_SHORT ).show();
-                        });
-
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //生成edf文件，等待文件生成后才能结束记录
+                                AppSDK.getInstance().generateEdfFile(mEdfPath);
+                                runOnUiThread(()->{
+                                    Toast.makeText(getApplicationContext(), "停止记录", Toast.LENGTH_SHORT ).show();
+                                });
+                            }
+                        }).start();
                     }
 
                     @Override
